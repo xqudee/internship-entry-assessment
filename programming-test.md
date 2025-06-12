@@ -344,35 +344,44 @@ a1.PrintName();
 2. Yes, you are able to call the method `PrintName()` defined in class B, because class C inherits from B, and thus it also inherits the public method `PrintName()`.
 However, you cannot directly call `PrintName(String message)` from outside B, because it is marked as private and accessible only within class B.
 
-3. - **Abstraction**
-<br>
+3. Key features:
+
+**Abstraction**
+
 The abstract class A defines a general concept of something that has a `Name` field and method `PrintName()` without implementing it.
+
 This forces all subclasses of A to provide a concrete implementation of `PrintName()`
-<br>It allows to hide implementation details and expose only essential features.
-<br>
-   - **Inheritance**
-<br>
+
+It allows to hide implementation details and expose only essential features.
+
+**Inheritance**
+
 Class B and D extend A, which means that it inherits the `Name` field and abstract method `PrintName()`, which it must implement.
-Class C extends B, and thus indirectly extends A as well.
+<br>Class C extends B, and thus indirectly extends A as well.
 <br>It allows to reuse the code and creates hierarchical relationship between classes.
-   - **Encapsulation**
-<br>
+
+**Encapsulation**
+
 The `Name` field is protected, which means it can be accessible in A and all subclasses, but not outside these classes.
-<br>The method `PrintName()` is private, so it is hidden from all other classes, even subclasses.
-<br>This approach limits access to internal details and exposes only what is necessary.
-<br>
-   - **Polymorphism**
-<br>
+
+The method `PrintName()` is private, so it is hidden from all other classes, even subclasses.
+
+This approach limits access to internal details and exposes only what is necessary.
+
+**Polymorphism**
+
 You can refer to any subclasses using a reference of A and call `PrintName()`:
 `java 
 A obj = new C("Test");
 obj.PrintName();
 `
-<br> Same interface, different implementations.
-<br>
-   - **Method Overriding**
-<br>
+
+Same interface, different implementations.
+
+**Method Overriding**
+
 B and D override the abstract method `PrintName()` from A and provide its own logic.
+
 It allows to customize or extend behavior of base class methods.
 
 ---
@@ -385,17 +394,20 @@ This exercise focuses on strategies for working with existing code bases and ens
 
 ### 1. **Working with Existing Code**  
 - How would you approach understanding and contributing to an existing code base with minimal disruption?  
-<br>
+
 **Answer:**
+ 
 I would start by reading the documentation and running the project to see how it works.
 Then, I would explore the code to understand the structure and how the main features are implemented.
 Before making any changes, I’d discuss them with the team to make sure I’m on the right way.
 I would also follow the existing code style and test everything carefully to avoid breaking anything.
-<br>
-<br>
+
+
 - What practices would you follow to ensure your changes integrate well with the current structure?  
-  <br>
-**Answer:** I would follow the existing coding style and naming conventions, and keep the architecture consistent with how similar features are already implemented. 
+
+**Answer:** 
+
+I would follow the existing coding style and naming conventions, and keep the architecture consistent with how similar features are already implemented. 
 I would carefully read and follow any contribution or development guidelines provided by the project. 
 Before making changes, I’d try to understand the purpose and dependencies of the affected code, and aim to keep my updates small, focused, and easy to review. 
 I would write or update tests as needed to verify that everything works correctly and doesn’t break existing functionality. 
@@ -403,17 +415,19 @@ Finally, I would review my changes and include clear commit messages or pull req
 
 ### 2. **Ensuring Maintainability**  
 - What techniques would you use to keep the code base clean, modular, and easy to maintain as new features are added?  
-<br>
+
+
 **Answer:**
+
 I would apply principles like separation of concerns and single responsibility.
 I would break complex logic into smaller, reusable functions or classes and avoid duplicating code by using common utilities or modules.
 Writing clear comments, meaningful commit messages, and keeping documentation up to date also helps with maintainability. 
 Additionally, I’d use version control effectively, write tests for new code, and refactor regularly to improve structure as the project grows.
-<br>
-<br>
+
 - How would you handle code documentation and testing to support long-term maintainability?  
-<br>
+
 **Answer:**
+
 I would write clear, concise documentation alongside the code, including comments that explain why something is done, not just what it does. 
 For larger components or complex logic, I’d include short summaries at the top of files or functions to guide future developers. 
 I’d also keep README files or internal docs updated with setup steps, key workflows, and architectural decisions.
@@ -422,17 +436,18 @@ I’d write tests as part of feature development, not afterward, to ensure code 
 
 ### 3. **Balancing Flexibility and Stability**  
 - How would you design or refactor the software to make it flexible for future changes while ensuring the existing functionality remains stable?
-<br>
+
 **Answer:**
+
 I’d break the system into smaller, well-defined modules so that future changes in one area don’t affect others. 
 When refactoring, I’d avoid changing multiple things at once—instead, I’d take small, incremental steps and verify each one with tests.
 I’d rely on existing tests and add new ones where coverage is missing to ensure current features stay stable.
 I’d also use version control to isolate changes and allow easy rollback if needed.
-<br>
-<br>
+
 - Which design patterns or principles would you apply to achieve this balance
-<br>
+
 **Answer:**
+
 To achieve a balance between flexibility for future changes and stability of existing functionality, I would apply SOLID principles.
 For example, the Single Responsibility Principle ensures each class or module has one clear purpose, making changes easier and safer.
 The Open/Closed Principle allows the system to be extended without modifying existing code, reducing the risk of breaking working features.
