@@ -113,6 +113,10 @@ class SMSNotification {
 	+ send(String message) void
 }
 
+class NotificationFactory {
+    + createNotification(String type) Notification
+}
+
 EmailNotification --|> Notification
 SMSNotification --|> Notification
 ```
@@ -127,24 +131,41 @@ In my example, a Course notifies all enrolled Student objects when a new announc
 Here is a small piece of code with Observer Pattern implementation:
 
 ```java
-class Observer {
-    <<interface>>
-	+ update(String message) void
+interface Observer {
+    void update(String message);
 }
 
-class Student {
-	- String name
-	+ update(String message) void
+class Student implements Observer {
+    private String name;
+
+    public Student(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println(name + " received: " + message);
+    }
 }
 
 class Course {
-	- List<Observer> students
-	+ subscribe(Observer student) void
-	+ postAnnouncement(String message) void
-	+ notifyAllObservers(String message) void
-}
+    private List<Observer> students = new ArrayList<>();
 
-Student --|> Observer
+    public void subscribe(Observer student) {
+        students.add(student);
+    }
+
+    public void postAnnouncement(String content) {
+        System.out.println("Course posted: " + content);
+        notifyAllObservers(content);
+    }
+
+    private void notifyAllObservers(String message) {
+        for (Observer student : students) {
+            student.update(message);
+        }
+    }
+}
 ```
 
 ```mermaid
